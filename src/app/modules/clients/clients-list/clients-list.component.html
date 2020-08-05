@@ -1,0 +1,53 @@
+<div class="pt-4">
+  <h5 class="text-left">Clientes</h5>
+</div>
+
+<hr>
+
+<div class="form-group row">
+  <div class="col-md-12">
+
+    <table class="table table-hover" aria-describedby="clientes">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="row">Nome</th>
+          <th scope="row">CPF</th>
+          <th scope="row"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of listClients">
+          <td>{{client.nome}}</td>
+          <td>{{client.cpf | mask: '000.000.000-00'}}</td>
+          <td>
+            <div class="row text-right actions-container" fxLayoutAlign="end center" fxLayoutGap="5px">
+              <button type="submit" [routerLink]="[client.id]" class="close">
+                <span class="material-icons">create</span>
+              </button>
+              <button type="submit" (click)="removeHandler(client)" class="close">
+                <span class="material-icons">delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="form-group row pt-4">
+      <div class="col-md-2 offset-md-10">
+        <button type="submit"  [routerLink]="['novo']" class="close btn btn-lg">
+          <span class="material-icons" [style.font-size]="'40px'">add_circle_outline</span>
+        </button>
+      </div>
+  </div>
+  </div>
+</div>
+
+<app-confirmation-modal #confirmationModal (closed)="confirmModalClosedHandler()"
+  (confirm)="confirmModalHandler($event)">
+  <div confirmation-modal-content>
+    <div>Deseja realmente remover esse item?</div>
+    <strong>{{clientRemove?.nome}}</strong>
+    <div>{{clientRemove?.cpf | mask: '000.000.000-00'}}</div>
+  </div>
+</app-confirmation-modal>

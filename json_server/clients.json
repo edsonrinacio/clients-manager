@@ -1,0 +1,34 @@
+{
+  "clientes": [
+    {
+      "id": "98ab0e43-3349-4680-b922-3643a48218d5",
+      "nome": "Edson Rodrigo Inacio",
+      "cpf": "32681823803",
+      "cep": "12630-000",
+      "logradouro": "Rua Jose Rodrigues Theodoro, 126",
+      "bairro": "Jardim Europa 2",
+      "localidade": "Cachoeira Paulista",
+      "uf": "SP"
+    },
+    {
+      "id": "98ab0e43-3349-4680-b922-3643a48218d1",
+      "nome": "Andrezza de Meira Aguiar",
+      "cpf": "32817253899",
+      "cep": "12630-000",
+      "logradouro": "Rua Barboza Ferraz, 382",
+      "bairro": "Centro",
+      "localidade": "Cachoeira Paulista",
+      "uf": "SP"
+    },
+    {
+      "id": "98ab0e43-3349-4680-b922-3643a48218d9",
+      "nome": "Sergio Luiz Motta Silva",
+      "cpf": "18277738455",
+      "cep": "12630-000",
+      "logradouro": "Rua Feliciano Mattos Crus, 10",
+      "bairro": "Parque Primavera",
+      "localidade": "Lorena",
+      "uf": "RJ"
+    }
+  ]
+}

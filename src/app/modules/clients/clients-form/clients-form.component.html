@@ -1,0 +1,124 @@
+<form class="form" role="form" autocomplete="off" [formGroup]="clientForm" *ngIf="clientForm">
+
+  <div class="pt-4">
+    <h5 class="text-left">Dados do cliente</h5>
+  </div>
+  <hr>
+
+  <div class="row">
+
+    <div class="col-md-8">
+      <label for="inputNome">Nome</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <em class="fa fa-user"></em>
+          </span>
+        </div>
+        <input id="inputNome" formControlName="nome" [class.is-invalid]="isInvalidControl('nome')" type="text" class="form-control" title="Nome" required="required">
+        <div class="invalid-feedback">
+          O nome é obrigatório
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="cc_name">CPF</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <em class="fas fa-id-card"></em>
+          </span>
+        </div>
+        <input formControlName="cpf" [mask]="'000.000.000-00'" [class.is-invalid]="isInvalidControl('cpf')" type="text" class="form-control" title="CPF" required="required">
+        <div class="invalid-feedback" *ngIf="clientForm.controls['cpf'].errors; let errors">
+          <span *ngIf="errors.required">O CPF é obrigatório</span>
+          <span *ngIf="errors.mask">CPF inválido</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-4">
+    <h5 class="text-left">Endereço</h5>
+  </div>
+  <hr>
+
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label for="cc_name">CEP</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <em class="fas fa-map-marker-alt"></em>
+          </span>
+        </div>
+        <input formControlName="cep" [mask]="'00.000-000'" [class.is-invalid]="isInvalidControl('cep')" type="text" class="form-control" title="CEP" required="required">
+        <div class="invalid-feedback" *ngIf="clientForm.controls['cep'].errors; let errors">
+          <span *ngIf="errors.required">O CEP é obrigatório</span>
+          <span *ngIf="errors.mask">CEP inválido</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-8">
+      <label for="cc_name">Logradouro</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <em class="fas fa-home"></em>
+          </span>
+        </div>
+        <input formControlName="logradouro" [class.is-invalid]="isInvalidControl('logradouro')" type="text" class="form-control" title="Logradouro" required="required">
+        <div class="invalid-feedback">
+          O logradouro é obrigatório
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="cc_name">Bairro</label>
+      <input formControlName="bairro" [class.is-invalid]="isInvalidControl('bairro')" type="text" class="form-control" title="Bairro" required="required">
+      <div class="invalid-feedback">
+        O bairro é obrigatório
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-8">
+      <label for="cc_name">Localidade</label>
+      <input formControlName="localidade" [class.is-invalid]="isInvalidControl('localidade')" type="text" class="form-control" title="Localidade" required="required">
+      <div class="invalid-feedback">
+        A localidade é obrigatória
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="cc_name">UF</label>
+      <select formControlName="uf" [class.is-invalid]="isInvalidControl('uf')" class="form-control" name="uf" size="0">
+        <option [value]="city.value" *ngFor="let city of citiesList">{{city.label}}</option>
+      </select>
+      <div class="invalid-feedback">
+        A UF é obrigatória
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row pt-4">
+    <div class="col-md-6 offset-md-6">
+      <div fxLayoutAlign="end center" fxLayoutGap="5px">
+        <button [routerLink]="['']" class="btn btn-outline-secondary btn-sm px-4">Cancelar</button>
+        <button type="submit" (click)="openConfirmationModal()" class="btn btn-success btn-sm px-4">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<app-confirmation-modal #confirmationModal (closed)="confirmModalClosedHandler()"
+  (confirm)="saveClient()">
+  <div confirmation-modal-content>
+    <div>Deseja realmente editar esse item?</div>
+  </div>
+</app-confirmation-modal>
+
